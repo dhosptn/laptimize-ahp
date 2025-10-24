@@ -1,8 +1,7 @@
 import type { Metadata } from 'next';
 import { IBM_Plex_Sans, Lato } from 'next/font/google';
 import './globals.css';
-
-import GlobalLoader from '@/components/GlobalLoader'; // ⬅️ Tambahkan ini
+import GlobalLoader from '@/components/GlobalLoader'; // Loader
 
 // Body → IBM Plex Sans
 const ibmPlexSans = IBM_Plex_Sans({
@@ -30,10 +29,13 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang='en' className={`${ibmPlexSans.variable} ${lato.variable}`}>
-      <body className='antialiased relative '>
-        <GlobalLoader /> {/* ⬅️ Ini loader-nya */}
-        <main>{children}</main>
+    <html
+      lang='en'
+      className={`${ibmPlexSans.variable} ${lato.variable} overflow-x-hidden w-full`}
+    >
+      <body className='antialiased relative overflow-x-hidden w-full'>
+        <GlobalLoader /> {/* Loader */}
+        <main className='w-full overflow-x-hidden'>{children}</main>
       </body>
     </html>
   );
