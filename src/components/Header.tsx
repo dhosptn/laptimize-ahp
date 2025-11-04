@@ -45,12 +45,12 @@ export default function Header() {
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6, ease: 'easeOut' }}
-      className='bg-gradient-to-r from-[#D9EAFD] via-[#9AA6B2] to-[#D9EAFD] text-white shadow-lg relative overflow-hidden'
+      className='bg-gradient-to-r from-[#0a2a4a] via-[#021526] to-[#0a2a4a] text-white shadow-2xl relative overflow-hidden border-b border-blue-400/30'
     >
       {/* Animated background elements */}
       <div className='absolute inset-0 overflow-hidden'>
         <motion.div
-          className='absolute -top-24 -right-24 w-48 h-48 rounded-full bg-[#b9e5e8] opacity-10'
+          className='absolute -top-24 -right-24 w-48 h-48 rounded-full bg-blue-500 opacity-10'
           animate={{
             scale: [1, 1.2, 1],
             rotate: [0, 180, 360],
@@ -62,7 +62,7 @@ export default function Header() {
           }}
         />
         <motion.div
-          className='absolute -bottom-12 -left-12 w-32 h-32 rounded-full bg-[#dff2eb] opacity-10'
+          className='absolute -bottom-12 -left-12 w-32 h-32 rounded-full bg-cyan-500 opacity-10'
           animate={{
             scale: [1.2, 1, 1.2],
             rotate: [360, 180, 0],
@@ -73,6 +73,8 @@ export default function Header() {
             ease: 'linear',
           }}
         />
+        {/* Shimmer effect */}
+        <div className='absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent transform -skew-x-12' />
       </div>
 
       <div className='container mx-auto relative z-10'>
@@ -81,13 +83,13 @@ export default function Header() {
           initial={{ scaleX: 0 }}
           animate={{ scaleX: 1 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className='h-1 bg-[#dff2eb] bg-opacity origin-left'
+          className='h-1 bg-blue-900/50 backdrop-blur-sm'
         >
           <motion.div
             initial={{ scaleX: 0 }}
             animate={{ scaleX: progress / 100 }}
             transition={{ duration: 0.8, delay: 0.5 }}
-            className='h-full bg-[#dff2eb] origin-left'
+            className='h-full bg-gradient-to-r from-blue-400 to-cyan-400 origin-left shadow-lg shadow-blue-500/30'
             style={{ width: `${progress}%` }}
           />
         </motion.div>
@@ -98,24 +100,24 @@ export default function Header() {
             initial={{ x: -50, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className='flex items-center gap-3 cursor-pointer group '
+            className='flex items-center gap-3 cursor-pointer group'
             onClick={handleHome}
           >
             <div className='relative'>
               <motion.div
                 whileHover={{ scale: 1.1, rotate: 5 }}
-                className='w-10 h-10 bg-[#dff2eb] rounded-xl flex items-center justify-center shadow-lg'
+                className='w-10 h-10 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-xl flex items-center justify-center shadow-lg shadow-blue-500/30'
               >
-                <Laptop className='w-5 h-5 text-[#4a628a]' />
+                <Laptop className='w-5 h-5 text-white' />
               </motion.div>
             </div>
             <div className='flex flex-col relative z-20'>
-              <h1 className='text-lg sm:text-xl text-white font-bold tracking-tight drop-shadow-[0_0_8px_rgba(255,255,255,0.4)]'>
+              <h1 className='text-lg sm:text-xl text-white font-bold tracking-tight drop-shadow-[0_0_8px_rgba(59,130,246,0.4)]'>
                 Laptop Selection AHP
               </h1>
               <Badge
                 variant='secondary'
-                className='bg-[#dff2eb] text-[#4a628a] text-xs mt-1'
+                className='bg-blue-500/20 text-blue-200 border-blue-400/30 text-xs mt-1 backdrop-blur-sm'
               >
                 Decision Support System
               </Badge>
@@ -139,10 +141,10 @@ export default function Header() {
                   {index > 0 && (
                     <div
                       className={cn(
-                        'w-8 h-0.5 mx-2',
+                        'w-8 h-0.5 mx-2 transition-all duration-300',
                         isCompleted || isActive
-                          ? 'bg-[#dff2eb]'
-                          : 'bg-white bg-opacity-30'
+                          ? 'bg-gradient-to-r from-blue-400 to-cyan-400'
+                          : 'bg-blue-300/30'
                       )}
                     />
                   )}
@@ -151,12 +153,12 @@ export default function Header() {
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                     className={cn(
-                      'flex items-center gap-2 px-3 py-2 rounded-lg transition-all cursor-pointer',
+                      'flex items-center gap-2 px-3 py-2 rounded-lg transition-all duration-300 cursor-pointer border backdrop-blur-sm',
                       isActive
-                        ? 'bg-[#dff2eb] text-[#4a628a] shadow-lg'
+                        ? 'bg-gradient-to-r from-blue-500 to-cyan-500 text-white shadow-lg shadow-blue-500/30 border-blue-400/50'
                         : isCompleted
-                        ? 'bg-[#7ab2d3] text-white shadow'
-                        : 'bg-white bg-opacity-10 text-white hover:bg-opacity-20'
+                        ? 'bg-blue-500/30 text-blue-200 border-blue-400/30 shadow-md hover:bg-blue-500/40'
+                        : 'bg-white/5 text-blue-100 border-blue-400/20 hover:bg-white/10 hover:border-blue-400/30'
                     )}
                     onClick={() => router.push(page.path)}
                   >
@@ -166,7 +168,7 @@ export default function Header() {
                       <motion.div
                         initial={{ scale: 0 }}
                         animate={{ scale: 1 }}
-                        className='w-2 h-2 bg-[#dff2eb] rounded-full'
+                        className='w-2 h-2 bg-cyan-300 rounded-full shadow-sm'
                       />
                     )}
                   </motion.div>
@@ -188,10 +190,10 @@ export default function Header() {
               variant='outline'
               size='sm'
               className={cn(
-                'gap-2 transition-all',
+                'gap-2 transition-all duration-300 backdrop-blur-sm border',
                 currentIndex <= 0
-                  ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
-                  : 'bg-white text-[#4a628a] hover:bg-[#dff2eb] border-white shadow-lg hover:shadow-xl'
+                  ? 'bg-gray-800/50 text-gray-500 border-gray-600 cursor-not-allowed'
+                  : 'bg-blue-500/10 text-blue-200 border-blue-400/30 hover:bg-blue-500/20 hover:text-white hover:border-blue-400/50 shadow-lg hover:shadow-blue-500/20'
               )}
             >
               <ArrowLeft size={16} />
@@ -205,9 +207,9 @@ export default function Header() {
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.8 }}
-                  className='hidden sm:block px-3 py-1 bg-gray-300 bg-opacity-20 rounded-full'
+                  className='hidden sm:block px-3 py-1 bg-blue-500/20 rounded-full border border-blue-400/30 backdrop-blur-sm'
                 >
-                  <span className='text-sm font-medium'>
+                  <span className='text-sm font-medium text-blue-200'>
                     {currentPage.label}
                   </span>
                 </motion.div>
@@ -220,10 +222,10 @@ export default function Header() {
               variant='outline'
               size='sm'
               className={cn(
-                'gap-2 transition-all',
+                'gap-2 transition-all duration-300 backdrop-blur-sm border',
                 !canNext
-                  ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
-                  : 'bg-white text-[#4a628a] hover:bg-[#dff2eb] border-white shadow-lg hover:shadow-xl'
+                  ? 'bg-gray-800/50 text-gray-500 border-gray-600 cursor-not-allowed'
+                  : 'bg-gradient-to-r from-blue-500 to-cyan-500 text-white border-blue-400/50 hover:from-blue-600 hover:to-cyan-600 shadow-lg hover:shadow-cyan-500/30'
               )}
             >
               <span className='hidden sm:inline'>Next</span>
@@ -234,18 +236,18 @@ export default function Header() {
 
         {/* Mobile progress indicator */}
         <div className='sm:hidden px-4 pb-3'>
-          <div className='flex justify-between items-center text-xs text-gray-600 text-opacity-80 mb-1'>
+          <div className='flex justify-between items-center text-xs text-blue-200/80 mb-1'>
             <span>
               Step {currentIndex + 1} of {pages.length}
             </span>
             <span>{currentPage?.label}</span>
           </div>
-          <div className='w-full bg-white bg-opacity-20 rounded-full h-2'>
+          <div className='w-full bg-blue-900/50 rounded-full h-2 backdrop-blur-sm'>
             <motion.div
               initial={{ scaleX: 0 }}
               animate={{ scaleX: 1 }}
               transition={{ duration: 0.6 }}
-              className='h-full bg-[#dff2eb] rounded-full origin-left'
+              className='h-full bg-gradient-to-r from-blue-400 to-cyan-400 rounded-full origin-left shadow-lg shadow-blue-500/30'
               style={{ width: `${progress}%` }}
             />
           </div>

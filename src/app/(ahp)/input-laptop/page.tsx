@@ -40,7 +40,7 @@ export default function InputLaptopPage() {
         }
       } catch (error) {
         console.error('Error parsing saved laptops:', error);
-        // If there's an error parsing, use defaulft empty laptop
+        // If there's an error parsing, use default empty laptop
         setLaptops([
           { name: '', price: 0, performance: 0, battery: 0, display: 0 },
         ]);
@@ -129,10 +129,16 @@ export default function InputLaptopPage() {
     },
   };
 
-  // Don't render until data is loaded to prevent flash of empty state
+  if (!isLoaded) {
+    return (
+      <div className='min-h-screen bg-[#021526] flex items-center justify-center'>
+        <div className='animate-spin rounded-full h-12 w-12 border-b-2 border-blue-400'></div>
+      </div>
+    );
+  }
 
   return (
-    <div className='min-h-screen bg-gradient-to-br from-[#dff2eb] to-[#7ab2d3]  py-8 px-4'>
+    <div className='min-h-screen bg-[#021526] py-8 px-4'>
       <div className='max-w-4xl mx-auto'>
         {/* Header */}
         <motion.div
@@ -143,12 +149,12 @@ export default function InputLaptopPage() {
         >
           <div className='flex items-center justify-center gap-4 mb-6'>
             <div>
-              <h1 className='text-4xl font-bold text-[#4a628a] mb-2'>
+              <h1 className='text-4xl font-bold text-white mb-2'>
                 Input Data Laptop
               </h1>
             </div>
           </div>
-          <p className='text-lg text-[#4a628a] text-opacity-80 max-w-2xl mx-auto'>
+          <p className='text-lg text-blue-100/80 max-w-2xl mx-auto'>
             Masukkan data laptop yang ingin kamu bandingkan untuk analisis AHP
           </p>
         </motion.div>
@@ -170,20 +176,20 @@ export default function InputLaptopPage() {
                 exit='exit'
                 layout
               >
-                <Card className='bg-white/90 backdrop-blur-sm border-[#b9e5e8] shadow-xl hover:shadow-2xl transition-all duration-500 overflow-hidden'>
-                  <div className='bg-gradient-to-r from-[#7ab2d3] to-[#dff2eb]'>
+                <Card className='bg-[#0a2a4a] backdrop-blur-sm border-blue-400/20 shadow-2xl hover:shadow-2xl hover:border-cyan-400/40 transition-all duration-500 overflow-hidden'>
+                  <div className='bg-gradient-to-r from-blue-500/20 to-cyan-500/20'>
                     <CardHeader className='p-5'>
                       <div className='flex items-center justify-between gap-3'>
                         {/* Kiri: Icon + Text */}
                         <div className='flex items-center gap-3 flex-1'>
-                          <div className='w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center backdrop-blur-sm'>
-                            <Edit3 className='w-6 h-6 text-white' />
+                          <div className='w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center backdrop-blur-sm border border-blue-400/30'>
+                            <Edit3 className='w-6 h-6 text-blue-300' />
                           </div>
                           <div className='flex flex-col justify-center'>
-                            <h2 className='text-xl font-bold text-[#E0ECFF] leading-tight'>
+                            <h2 className='text-xl font-bold text-white leading-tight'>
                               Laptop {i + 1}
                             </h2>
-                            <p className='text-white/80 text-sm leading-tight'>
+                            <p className='text-blue-200/80 text-sm leading-tight'>
                               {lap.name || 'Belum ada nama'}
                             </p>
                           </div>
@@ -199,7 +205,7 @@ export default function InputLaptopPage() {
                               variant='ghost'
                               size='icon'
                               onClick={() => removeLaptop(i)}
-                              className='text-gray-500 hover:bg-white/20 hover:text-gray-700 flex items-center justify-center'
+                              className='text-red-400 hover:bg-red-500/20 hover:text-red-300 flex items-center justify-center border border-red-400/30'
                             >
                               <Trash2 className='w-5 h-5' />
                             </Button>
@@ -216,8 +222,8 @@ export default function InputLaptopPage() {
                     >
                       {/* Nama Laptop */}
                       <motion.div variants={itemVariants} className='space-y-3'>
-                        <label className='flex items-center gap-2 text-sm font-semibold text-[#4a628a]'>
-                          <LaptopIcon className='w-4 h-4' />
+                        <label className='flex items-center gap-2 text-sm font-semibold text-blue-200'>
+                          <LaptopIcon className='w-4 h-4 text-blue-400' />
                           Nama Laptop
                         </label>
                         <Input
@@ -227,14 +233,14 @@ export default function InputLaptopPage() {
                             handleChange(i, 'name', e.target.value)
                           }
                           placeholder='Contoh: MacBook Pro M2'
-                          className='h-12 border-[#b9e5e8] focus:border-[#4a628a] focus:ring-[#4a628a]'
+                          className='h-12 bg-[#021526] border-blue-400/30 text-white placeholder:text-blue-200/50 focus:border-cyan-400 focus:ring-cyan-400/20'
                         />
                       </motion.div>
 
                       {/* Harga */}
                       <motion.div variants={itemVariants} className='space-y-3'>
-                        <label className='flex items-center gap-2 text-sm font-semibold text-[#4a628a]'>
-                          <DollarSign className='w-4 h-4' />
+                        <label className='flex items-center gap-2 text-sm font-semibold text-blue-200'>
+                          <DollarSign className='w-4 h-4 text-green-400' />
                           Harga (juta Rp)
                         </label>
                         <Input
@@ -246,14 +252,14 @@ export default function InputLaptopPage() {
                           placeholder='Contoh: 15'
                           min='0'
                           step='0.1'
-                          className='h-12 border-[#b9e5e8] focus:border-[#4a628a] focus:ring-[#4a628a]'
+                          className='h-12 bg-[#021526] border-blue-400/30 text-white placeholder:text-blue-200/50 focus:border-cyan-400 focus:ring-cyan-400/20'
                         />
                       </motion.div>
 
                       {/* Performa */}
                       <motion.div variants={itemVariants} className='space-y-3'>
-                        <label className='flex items-center gap-2 text-sm font-semibold text-[#4a628a]'>
-                          <Cpu className='w-4 h-4' />
+                        <label className='flex items-center gap-2 text-sm font-semibold text-blue-200'>
+                          <Cpu className='w-4 h-4 text-purple-400' />
                           Performa (1-10)
                         </label>
                         <Input
@@ -265,14 +271,14 @@ export default function InputLaptopPage() {
                           placeholder='1–10'
                           min='1'
                           max='10'
-                          className='h-12 border-[#b9e5e8] focus:border-[#4a628a] focus:ring-[#4a628a]'
+                          className='h-12 bg-[#021526] border-blue-400/30 text-white placeholder:text-blue-200/50 focus:border-cyan-400 focus:ring-cyan-400/20'
                         />
                       </motion.div>
 
                       {/* Baterai */}
                       <motion.div variants={itemVariants} className='space-y-3'>
-                        <label className='flex items-center gap-2 text-sm font-semibold text-[#4a628a]'>
-                          <Battery className='w-4 h-4' />
+                        <label className='flex items-center gap-2 text-sm font-semibold text-blue-200'>
+                          <Battery className='w-4 h-4 text-yellow-400' />
                           Daya Tahan Baterai (1-10)
                         </label>
                         <Input
@@ -284,7 +290,7 @@ export default function InputLaptopPage() {
                           placeholder='1–10'
                           min='1'
                           max='10'
-                          className='h-12 border-[#b9e5e8] focus:border-[#4a628a] focus:ring-[#4a628a]'
+                          className='h-12 bg-[#021526] border-blue-400/30 text-white placeholder:text-blue-200/50 focus:border-cyan-400 focus:ring-cyan-400/20'
                         />
                       </motion.div>
 
@@ -293,8 +299,8 @@ export default function InputLaptopPage() {
                         variants={itemVariants}
                         className='space-y-3 md:col-span-2'
                       >
-                        <label className='flex items-center gap-2 text-sm font-semibold text-[#4a628a]'>
-                          <Monitor className='w-4 h-4' />
+                        <label className='flex items-center gap-2 text-sm font-semibold text-blue-200'>
+                          <Monitor className='w-4 h-4 text-pink-400' />
                           Kualitas Layar (1-10)
                         </label>
                         <Input
@@ -306,7 +312,7 @@ export default function InputLaptopPage() {
                           placeholder='1–10'
                           min='1'
                           max='10'
-                          className='h-12 border-[#b9e5e8] focus:border-[#4a628a] focus:ring-[#4a628a]'
+                          className='h-12 bg-[#021526] border-blue-400/30 text-white placeholder:text-blue-200/50 focus:border-cyan-400 focus:ring-cyan-400/20'
                         />
                       </motion.div>
                     </motion.div>
@@ -348,10 +354,10 @@ export default function InputLaptopPage() {
                         <div
                           key={item.field}
                           className={cn(
-                            'flex items-center gap-2 p-2 rounded-lg text-sm font-medium transition-all duration-300',
+                            'flex items-center gap-2 p-2 rounded-lg text-sm font-medium transition-all duration-300 border backdrop-blur-sm',
                             item.valid
-                              ? 'bg-green-100 text-green-700'
-                              : 'bg-red-100 text-red-700'
+                              ? 'bg-green-500/20 text-green-300 border-green-400/30'
+                              : 'bg-red-500/20 text-red-300 border-red-400/30'
                           )}
                         >
                           {item.valid ? (
@@ -381,7 +387,7 @@ export default function InputLaptopPage() {
             <Button
               onClick={addLaptop}
               variant='outline'
-              className='h-12 px-6 border-[#4a628a] text-[#4a628a] hover:bg-[#4a628a] hover:text-white'
+              className='h-12 px-6 border-blue-400 text-blue-300 hover:bg-blue-500/20 hover:text-white hover:border-blue-300 backdrop-blur-sm'
             >
               <Plus className='w-5 h-5 mr-2' />
               Tambah Laptop Lain
@@ -393,8 +399,8 @@ export default function InputLaptopPage() {
               onClick={next}
               disabled={!isFormValid}
               className={cn(
-                'h-12 px-8 bg-gradient-to-r from-[#4a628a] to-[#7ab2d3] text-white shadow-lg cursor-pointer',
-                !isFormValid && 'opacity-50 cursor-not-allowed'
+                'h-12 px-8 bg-gradient-to-r from-blue-500 to-cyan-500 text-white shadow-lg hover:shadow-xl hover:shadow-blue-500/30 transition-all duration-300 cursor-pointer backdrop-blur-sm',
+                !isFormValid && 'opacity-50 cursor-not-allowed grayscale'
               )}
             >
               Lanjut ke Perbandingan Kriteria
@@ -410,7 +416,7 @@ export default function InputLaptopPage() {
           transition={{ delay: 1 }}
           className='text-center'
         >
-          <p className='text-sm text-[#4a628a] text-opacity-70 mb-2'>
+          <p className='text-sm text-blue-200/70 mb-2'>
             Pastikan semua data laptop sudah terisi dengan benar sebelum
             melanjutkan
           </p>
@@ -418,7 +424,7 @@ export default function InputLaptopPage() {
             <motion.p
               initial={{ scale: 0.8 }}
               animate={{ scale: 1 }}
-              className='text-sm text-red-500 font-medium'
+              className='text-sm text-red-300 font-medium'
             >
               * Semua field harus diisi dengan nilai yang valid
             </motion.p>

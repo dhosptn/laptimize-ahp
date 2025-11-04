@@ -55,11 +55,11 @@ export default function ResultsPage() {
   const getRankIcon = (index: number) => {
     switch (index) {
       case 0:
-        return <Crown className='w-6 h-6 text-yellow-600' />;
+        return <Crown className='w-6 h-6 text-yellow-400' />;
       case 1:
-        return <Trophy className='w-6 h-6 text-gray-200' />;
+        return <Trophy className='w-6 h-6 text-gray-300' />;
       case 2:
-        return <Award className='w-6 h-6 text-amber-400' />;
+        return <Award className='w-6 h-6 text-amber-300' />;
       default:
         return <Medal className='w-6 h-6 text-blue-400' />;
     }
@@ -68,26 +68,26 @@ export default function ResultsPage() {
   const getRankColor = (index: number) => {
     switch (index) {
       case 0:
-        return 'from-yellow-400 to-amber-500';
+        return 'from-yellow-500 to-amber-600';
       case 1:
-        return 'from-gray-400 to-gray-500';
+        return 'from-gray-500 to-gray-600';
       case 2:
-        return 'from-amber-600 to-orange-500';
+        return 'from-amber-500 to-orange-500';
       default:
-        return 'from-[#7ab2d3] to-[#4a628a]';
+        return 'from-blue-500 to-cyan-500';
     }
   };
 
   const getRankBorder = (index: number) => {
     switch (index) {
       case 0:
-        return 'ring-4 ring-yellow-400 ring-opacity-30';
+        return 'ring-4 ring-yellow-500 ring-opacity-30';
       case 1:
         return 'ring-2 ring-gray-400 ring-opacity-30';
       case 2:
         return 'ring-2 ring-amber-500 ring-opacity-30';
       default:
-        return 'ring-1 ring-[#b9e5e8]';
+        return 'ring-1 ring-blue-400/30';
     }
   };
 
@@ -128,7 +128,7 @@ export default function ResultsPage() {
   const maxScore = results[0]?.score || 1;
 
   return (
-    <div className='min-h-screen bg-gradient-to-br from-[#dff2eb] via-[#b9e5e8] to-[#7ab2d3] py-8 px-4'>
+    <div className='min-h-screen bg-[#021526] py-8 px-4'>
       <div className='max-w-6xl mx-auto'>
         {/* Header */}
         <motion.div
@@ -139,10 +139,13 @@ export default function ResultsPage() {
         >
           <div className='flex items-center justify-center gap-4 mb-6'>
             <div>
-              <h1 className='text-4xl font-bold text-[#4a628a] mb-2'>
+              <h1 className='text-4xl font-bold text-white mb-2'>
                 Hasil Rekomendasi Laptop
               </h1>
-              <Badge variant='secondary' className='bg-[#7ab2d3] text-white'>
+              <Badge
+                variant='secondary'
+                className='bg-blue-500/20 text-blue-200 border-blue-400/30'
+              >
                 AHP Analysis Results
               </Badge>
             </div>
@@ -154,7 +157,7 @@ export default function ResultsPage() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.5 }}
-              className='inline-flex items-center gap-2 px-4 py-2 bg-white/80 backdrop-blur-sm rounded-full shadow-lg'
+              className='inline-flex items-center gap-2 px-4 py-2 bg-blue-500/10 backdrop-blur-sm rounded-full border border-blue-400/30'
             >
               <div
                 className={cn(
@@ -162,7 +165,7 @@ export default function ResultsPage() {
                   CR <= 0.1 ? 'bg-green-500' : 'bg-amber-500'
                 )}
               />
-              <span className='text-sm font-medium text-[#4a628a]'>
+              <span className='text-sm font-medium text-blue-200'>
                 Consistency Ratio: <strong>{CR.toFixed(3)}</strong>
                 {CR <= 0.1 && ' ✓ Konsisten'}
                 {CR > 0.1 && ' ⚠ Perlu Review'}
@@ -179,17 +182,17 @@ export default function ResultsPage() {
             animate='visible'
             className='mb-8'
           >
-            <Card className='bg-white/90 backdrop-blur-sm border-[#b9e5e8] shadow-xl'>
+            <Card className='bg-[#0a2a4a] backdrop-blur-sm border-blue-400/20 shadow-2xl'>
               <CardHeader className='pb-4'>
                 <div className='flex items-center gap-3'>
-                  <div className='w-12 h-12 bg-[#4a628a] rounded-xl flex items-center justify-center'>
-                    <BarChart3 className='w-6 h-6 text-white' />
+                  <div className='w-18 h-10 md:w-12 md:h-12 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-lg md:rounded-xl flex items-center justify-center shadow-lg shadow-blue-500/30'>
+                    <BarChart3 className='w-8 h-5 md:w-6 md:h-6 text-white' />
                   </div>
                   <div>
-                    <h3 className='text-xl font-bold text-[#4a628a]'>
+                    <h3 className='text-xl font-bold text-white'>
                       Bobot Kriteria AHP
                     </h3>
-                    <p className='text-[#4a628a] text-opacity-70'>
+                    <p className='text-blue-200/80'>
                       Distribusi prioritas kriteria berdasarkan perbandingan
                       berpasangan
                     </p>
@@ -227,23 +230,23 @@ export default function ResultsPage() {
                     <motion.div
                       key={label}
                       whileHover={{ scale: 1.05 }}
-                      className='text-center p-4 bg-[#dff2eb] rounded-2xl border border-[#b9e5e8]'
+                      className='text-center p-4 bg-blue-500/10 rounded-2xl border border-blue-400/20 backdrop-blur-sm'
                     >
                       <div
-                        className='w-12 h-12 rounded-xl flex items-center justify-center mx-auto mb-3'
-                        style={{ backgroundColor: `${color}20` }}
+                        className='w-12 h-12 rounded-xl flex items-center justify-center mx-auto mb-3 border border-blue-400/30'
+                        style={{ backgroundColor: `${color}15` }}
                       >
                         <Icon className='w-6 h-6' style={{ color }} />
                       </div>
-                      <div className='text-sm font-medium text-[#4a628a] mb-1'>
+                      <div className='text-sm font-medium text-blue-200 mb-1'>
                         {label}
                       </div>
-                      <div className='text-2xl font-bold text-[#4a628a] mb-2'>
+                      <div className='text-2xl font-bold text-white mb-2'>
                         {(weights[index] * 100).toFixed(1)}%
                       </div>
                       <Progress
                         value={weights[index] * 100}
-                        className='h-2 bg-white'
+                        className='h-2 bg-blue-900/50'
                       />
                     </motion.div>
                   ))}
@@ -267,11 +270,11 @@ export default function ResultsPage() {
                 variants={itemVariants}
                 layout
                 className={cn(
-                  'bg-white/90 backdrop-blur-sm rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 border border-[#b9e5e8] overflow-hidden',
+                  'bg-[#0a2a4a] backdrop-blur-sm rounded-2xl shadow-2xl hover:shadow-2xl transition-all duration-500 border border-blue-400/20 hover:border-cyan-400/40 overflow-hidden',
                   getRankBorder(i)
                 )}
               >
-                <Card className='border-0'>
+                <Card className='border-0 bg-transparent'>
                   <CardContent className='p-6'>
                     <div className='flex flex-col lg:flex-row items-center lg:items-start gap-6'>
                       {/* Rank Badge */}
@@ -290,10 +293,10 @@ export default function ResultsPage() {
                       <div className='flex-grow min-w-0 w-full text-center lg:text-left'>
                         <div className='flex flex-col items-center lg:items-start gap-3 mb-4'>
                           <div className='flex flex-col sm:flex-row items-center gap-3'>
-                            <div className='w-10 h-10 bg-[#4a628a] rounded-xl flex items-center justify-center'>
+                            <div className='w-10 h-10 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-xl flex items-center justify-center shadow-lg shadow-blue-500/30'>
                               <LaptopIcon className='w-5 h-5 text-white' />
                             </div>
-                            <h3 className='text-2xl font-bold text-[#4a628a] truncate text-center lg:text-left'>
+                            <h3 className='text-2xl font-bold text-white truncate text-center lg:text-left'>
                               {r.name}
                             </h3>
                           </div>
@@ -303,7 +306,7 @@ export default function ResultsPage() {
                               animate={{ scale: 1 }}
                               transition={{ delay: 0.5, type: 'spring' }}
                             >
-                              <Badge className='bg-gradient-to-r from-yellow-400 to-amber-500 text-white px-4 py-2 text-sm font-bold'>
+                              <Badge className='bg-gradient-to-r from-yellow-500 to-amber-600 text-white px-4 py-2 text-sm font-bold border-0 shadow-lg'>
                                 <Sparkles className='w-4 h-4 mr-1' />
                                 REKOMENDASI TERBAIK
                               </Badge>
@@ -342,19 +345,19 @@ export default function ResultsPage() {
                             <motion.div
                               key={label}
                               whileHover={{ scale: 1.02 }}
-                              className='flex items-center gap-3 p-3 bg-[#dff2eb] rounded-xl border border-[#b9e5e8] justify-center sm:justify-start'
+                              className='flex items-center gap-3 p-3 bg-blue-500/10 rounded-xl border border-blue-400/20 backdrop-blur-sm justify-center sm:justify-start'
                             >
                               <div
-                                className='w-8 h-8 rounded-lg flex items-center justify-center'
-                                style={{ backgroundColor: `${color}20` }}
+                                className='w-8 h-8 rounded-lg flex items-center justify-center border border-blue-400/30'
+                                style={{ backgroundColor: `${color}15` }}
                               >
                                 <Icon className='w-4 h-4' style={{ color }} />
                               </div>
                               <div>
-                                <div className='text-xs text-[#4a628a] text-opacity-70'>
+                                <div className='text-xs text-blue-200/70'>
                                   {label}
                                 </div>
-                                <div className='font-bold text-[#4a628a]'>
+                                <div className='font-bold text-white'>
                                   {value}
                                 </div>
                               </div>
@@ -366,22 +369,22 @@ export default function ResultsPage() {
                         <div className='space-y-3'>
                           <div className='flex flex-col sm:flex-row sm:items-center justify-between gap-2'>
                             <div className='flex items-center gap-2 justify-center sm:justify-start'>
-                              <TrendingUp className='w-4 h-4 text-[#4a628a]' />
-                              <span className='text-sm font-medium text-[#4a628a]'>
+                              <TrendingUp className='w-4 h-4 text-cyan-400' />
+                              <span className='text-sm font-medium text-blue-200'>
                                 Skor AHP Final
                               </span>
                             </div>
                             <motion.span
                               initial={{ scale: 0 }}
                               animate={{ scale: 1 }}
-                              className='text-xl font-bold bg-gradient-to-r from-[#4a628a] to-[#7ab2d3] bg-clip-text text-transparent text-center'
+                              className='text-xl font-bold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent text-center'
                             >
                               {r.score.toFixed(4)}
                             </motion.span>
                           </div>
 
                           {/* Animated Progress Bar */}
-                          <div className='w-full bg-[#dff2eb] rounded-full h-4 overflow-hidden'>
+                          <div className='w-full bg-blue-900/50 rounded-full h-4 overflow-hidden backdrop-blur-sm'>
                             <motion.div
                               initial={{ width: 0 }}
                               animate={{
@@ -392,13 +395,13 @@ export default function ResultsPage() {
                                 ease: 'easeOut',
                                 delay: i * 0.2,
                               }}
-                              className='h-4 rounded-full bg-gradient-to-r from-[#4a628a] to-[#7ab2d3] shadow-lg'
+                              className='h-4 rounded-full bg-gradient-to-r from-blue-500 to-cyan-500 shadow-lg shadow-blue-500/30'
                             />
                           </div>
 
                           {/* Percentage Indicator */}
                           <div className='text-center sm:text-right'>
-                            <span className='text-xs text-[#4a628a] text-opacity-70'>
+                            <span className='text-xs text-blue-200/70'>
                               {((r.score / maxScore) * 100).toFixed(1)}% dari
                               skor tertinggi
                             </span>
@@ -421,7 +424,7 @@ export default function ResultsPage() {
             transition={{ delay: 1 }}
             className='text-center'
           >
-            <Card className='bg-gradient-to-r from-[#4a628a] to-[#7ab2d3] border-0 shadow-2xl'>
+            <Card className='bg-gradient-to-r from-blue-500 to-cyan-500 border-0 shadow-2xl shadow-cyan-500/30'>
               <CardContent className='p-6'>
                 <div className='flex items-center justify-center gap-3 mb-3'>
                   <Target className='w-6 h-6 text-white' />
@@ -447,19 +450,19 @@ export default function ResultsPage() {
             animate={{ opacity: 1, scale: 1 }}
             className='text-center py-16'
           >
-            <Card className='bg-white/90 backdrop-blur-sm border-[#b9e5e8] max-w-md mx-auto'>
+            <Card className='bg-[#0a2a4a] backdrop-blur-sm border-blue-400/20 max-w-md mx-auto shadow-2xl'>
               <CardContent className='p-8'>
-                <Trophy className='w-16 h-16 text-[#b9e5e8] mx-auto mb-4' />
-                <h3 className='text-xl font-bold text-[#4a628a] mb-2'>
+                <Trophy className='w-16 h-16 text-blue-400/50 mx-auto mb-4' />
+                <h3 className='text-xl font-bold text-white mb-2'>
                   Belum Ada Data Analisis
                 </h3>
-                <p className='text-[#4a628a] text-opacity-70 mb-4'>
+                <p className='text-blue-200/70 mb-4'>
                   Silakan lengkapi input data laptop dan perbandingan kriteria
                   terlebih dahulu.
                 </p>
                 <Badge
                   variant='outline'
-                  className='border-[#4a628a] text-[#4a628a]'
+                  className='border-blue-400/30 text-blue-200'
                 >
                   AHP System Ready
                 </Badge>

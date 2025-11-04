@@ -2,217 +2,191 @@
 
 import { motion } from 'framer-motion';
 import { Card, CardContent } from '@/components/ui/card';
-import {
-  BarChart3,
-  GitCompare,
-  Laptop,
-  ArrowRight,
-  Sparkles,
-  Calculator,
-  CheckCircle2,
-} from 'lucide-react';
+import { GitCompare, Laptop, BarChart3, CheckCircle2 } from 'lucide-react';
 
 export default function FeaturesSection() {
   const features = [
     {
-      icon: GitCompare,
-      title: 'Perbandingan Kriteria',
-      description:
-        'Bandingkan kriteria laptop secara interaktif untuk menentukan bobot prioritas dengan metode pairwise comparison.',
-      color: 'from-[#4a628a] to-[#7ab2d3]',
-      bgColor: 'bg-gradient-to-br from-[#4a628a]/10 to-[#7ab2d3]/10',
-      details: ['Pairwise Comparison', 'Konsistensi Rasio', 'Prioritas Bobot'],
-    },
-    {
       icon: Laptop,
       title: 'Alternatif Laptop',
       description:
-        'Tambahkan beberapa pilihan laptop yang ingin kamu bandingkan dengan spesifikasi lengkap dan detail.',
-      color: 'from-[#7ab2d3] to-[#b9e5e8]',
-      bgColor: 'bg-gradient-to-br from-[#7ab2d3]/10 to-[#b9e5e8]/10',
+        'Tambahkan dan kelola berbagai pilihan laptop dengan spesifikasi lengkap untuk perbandingan.',
+      color: 'from-green-400 to-emerald-400',
+      iconColor: 'text-green-400',
       details: ['Multiple Device', 'Spesifikasi Detail', 'Custom Input'],
+    },
+    {
+      icon: GitCompare,
+      title: 'Perbandingan Kriteria',
+      description:
+        'Bandingkan kriteria laptop secara interaktif untuk menentukan bobot prioritas dengan metode AHP.',
+      color: 'from-blue-400 to-cyan-400',
+      iconColor: 'text-blue-400',
+      details: ['Pairwise Comparison', 'Konsistensi Rasio', 'Prioritas Bobot'],
     },
     {
       icon: BarChart3,
       title: 'Hasil Ranking',
       description:
-        'Dapatkan rekomendasi laptop terbaik dengan grafik hasil perhitungan AHP yang mudah dipahami.',
-      color: 'from-[#4a628a] to-[#b9e5e8]',
-      bgColor: 'bg-gradient-to-br from-[#4a628a]/10 to-[#b9e5e8]/10',
+        'Dapatkan rekomendasi laptop terbaik berdasarkan analisis AHP yang komprehensif.',
+      color: 'from-purple-400 to-violet-400',
+      iconColor: 'text-purple-400',
       details: ['Visual Chart', 'Score Akhir', 'Rekomendasi Terbaik'],
     },
   ];
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: 'easeOut',
+      },
+    },
+  };
+
   return (
-    <section
-      className='relative py-25 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-[#dff2eb] to-[#7ab2d3] overflow-hidden'
-      id='services'
-    >
-      {/* Background Decorations */}
-      <div className='absolute inset-0 overflow-hidden'>
-        {/* Animated Grid */}
-        <div className='absolute inset-0 opacity-[0.03]'>
-          <div className='absolute inset-0 bg-[linear-gradient(to_right,#4a628a_1px,transparent_1px),linear-gradient(to_bottom,#4a628a_1px,transparent_1px)] bg-[size:64px_64px]' />
-        </div>
-
-        {/* Floating Shapes */}
+    <section className='py-20 px-4 sm:px-6 lg:px-8 bg-[#021526]' id='services'>
+      <div className='max-w-6xl mx-auto'>
+        {/* Header Section */}
         <motion.div
-          animate={{
-            y: [0, -30, 0],
-            rotate: [0, 5, 0],
-          }}
-          transition={{
-            duration: 8,
-            repeat: Infinity,
-            ease: 'easeInOut',
-          }}
-          className='absolute top-20 left-10 w-20 h-20 bg-gradient-to-br from-[#4a628a]/10 to-[#7ab2d3]/10 rounded-3xl blur-xl'
-        />
-        <motion.div
-          animate={{
-            y: [0, 40, 0],
-            rotate: [0, -5, 0],
-          }}
-          transition={{
-            duration: 10,
-            repeat: Infinity,
-            ease: 'easeInOut',
-            delay: 1,
-          }}
-          className='absolute bottom-32 right-16 w-24 h-24 bg-gradient-to-br from-[#7ab2d3]/10 to-[#b9e5e8]/10 rounded-3xl blur-xl'
-        />
-        <motion.div
-          animate={{
-            y: [0, -20, 0],
-            scale: [1, 1.1, 1],
-          }}
-          transition={{
-            duration: 6,
-            repeat: Infinity,
-            ease: 'easeInOut',
-            delay: 2,
-          }}
-          className='absolute top-1/2 right-1/4 w-16 h-16 bg-gradient-to-br from-[#dff2eb] to-[#b9e5e8] rounded-2xl blur-lg'
-        />
-      </div>
-
-      <div className='max-w-7xl mx-auto relative'>
-        {/* Section Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className='text-center mb-20'
+          transition={{ duration: 0.6 }}
+          className='text-center mb-16'
         >
-          <motion.div
-            initial={{ scale: 0 }}
-            whileInView={{ scale: 1 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className='inline-flex items-center gap-3 bg-white/80 backdrop-blur-xl rounded-2xl px-6 py-3 border border-white/40 shadow-lg mb-6'
-          >
-            <motion.div
-              animate={{ rotate: 360 }}
-              transition={{ duration: 4, repeat: Infinity, ease: 'linear' }}
-            >
-              <Sparkles className='h-5 w-5 text-[#4a628a]' fill='#4a628a' />
-            </motion.div>
-            <span className='text-lg font-semibold bg-gradient-to-r from-[#4a628a] to-[#7ab2d3] bg-clip-text text-transparent'>
+          <div className='inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-6 py-3 mb-6 border border-blue-400/30 shadow-lg shadow-blue-500/10'>
+            <span className='text-sm font-semibold text-blue-200'>
               Fitur Unggulan
             </span>
-          </motion.div>
+          </div>
 
-          <h2 className='text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6'>
-            Fitur{' '}
-            <span className='bg-gradient-to-r from-[#4a628a] via-[#7ab2d3] to-[#4a628a] bg-clip-text text-transparent bg-[length:200%_auto] animate-gradient'>
-              Utama
+          <h2 className='text-4xl md:text-5xl font-bold text-white mb-6'>
+            Cara Kerja{' '}
+            <span className='text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400'>
+              AHP
             </span>
           </h2>
 
-          <p className='text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed'>
-            Temukan pengalaman terbaik dalam memilih laptop dengan fitur-fitur
-            canggih yang dirancang untuk memberikan hasil yang akurat dan mudah
-            dipahami.
+          <p className='text-xl text-blue-100/80 max-w-3xl mx-auto leading-relaxed'>
+            Sistem analisis yang membantu Anda memilih laptop terbaik dengan
+            metode Analytical Hierarchy Process yang terstruktur dan akurat.
           </p>
         </motion.div>
 
         {/* Features Grid */}
-        <div className='grid grid-cols-1 lg:grid-cols-3 gap-6'>
+        <motion.div
+          variants={containerVariants}
+          initial='hidden'
+          whileInView='visible'
+          viewport={{ once: true }}
+          className='grid grid-cols-1 lg:grid-cols-3 gap-8'
+        >
           {features.map((feature, index) => (
             <motion.div
               key={feature.title}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{
-                duration: 0.5,
-                delay: index * 0.1,
-                ease: 'easeOut',
-              }}
-              whileHover={{
-                y: -4,
-                transition: { duration: 0.2, ease: 'easeOut' },
-              }}
-              className='group relative h-full'
+              variants={itemVariants}
+              className='group'
             >
-              {/* Background Glow - Simplified */}
-              <div
-                className={`absolute inset-0 ${feature.bgColor} rounded-2xl blur-lg opacity-0 group-hover:opacity-60 transition-opacity duration-300`}
-              />
+              <Card className='bg-[#0a2a4a] border border-blue-400/20 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 h-full overflow-hidden hover:border-cyan-400/40 relative backdrop-blur-sm'>
+                {/* Gradient overlay */}
+                <div
+                  className={`absolute inset-0 bg-gradient-to-br ${feature.color} opacity-0 group-hover:opacity-5 transition-opacity duration-500`}
+                />
 
-              <Card className='relative bg-white/90 backdrop-blur-sm rounded-2xl shadow-lg border border-gray-100/50 hover:shadow-xl transition-all duration-300 overflow-hidden h-full flex flex-col'>
-                {/* Simplified Animated Border */}
-                <div className='absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -skew-x-12 transform -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out' />
+                {/* Shine effect */}
+                <div className='absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000' />
 
-                <CardContent className='p-6 relative flex flex-col flex-1'>
-                  {/* Icon Container - Fixed Size */}
-                  <div className='flex justify-center mb-4'>
-                    <motion.div
-                      whileHover={{ scale: 1.05 }}
-                      transition={{ duration: 0.2 }}
-                      className={`w-14 h-14 bg-gradient-to-br ${feature.color} rounded-xl flex items-center justify-center group-hover:shadow-md transition-shadow duration-300`}
+                <CardContent className='p-8 relative z-10'>
+                  {/* Icon with Number */}
+                  <div className='flex items-center justify-between mb-6'>
+                    <div
+                      className={`w-14 h-14 bg-gradient-to-r ${feature.color} rounded-xl flex items-center justify-center group-hover:scale-105 transition-transform duration-300 shadow-lg`}
                     >
-                      <feature.icon className='w-6 h-6 text-white' />
-                    </motion.div>
+                      <feature.icon className='w-7 h-7 text-white' />
+                    </div>
+                    <div className='w-8 h-8 bg-white/10 rounded-full flex items-center justify-center text-sm font-semibold text-blue-200 border border-blue-400/30'>
+                      {index + 1}
+                    </div>
                   </div>
 
-                  {/* Title - Centered and Consistent */}
-                  <h3 className='text-xl font-bold text-gray-900 mb-3 text-center group-hover:text-[#4a628a] transition-colors duration-300 line-clamp-2'>
+                  {/* Title */}
+                  <h3 className='text-2xl font-bold text-white mb-4 group-hover:text-blue-100 transition-colors duration-300'>
                     {feature.title}
                   </h3>
 
-                  {/* Description - Fixed Height */}
-                  <p className='text-gray-600 leading-relaxed mb-4 text-center flex-1 line-clamp-3'>
+                  {/* Description */}
+                  <p className='text-blue-100/80 mb-6 leading-relaxed text-lg'>
                     {feature.description}
                   </p>
 
-                  {/* Feature Details - Simplified */}
-                  <div className='space-y-2 mb-4'>
-                    {feature.details.map((detail, idx) => (
-                      <motion.div
+                  {/* Feature Details */}
+                  <div className='space-y-3'>
+                    {feature.details.map((detail) => (
+                      <div
                         key={detail}
-                        initial={{ opacity: 0, x: -10 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        transition={{
-                          duration: 0.3,
-                          delay: index * 0.05 + idx * 0.05,
-                        }}
-                        className='flex items-center gap-2'
+                        className='flex items-center gap-3 group/item'
                       >
-                        <div className='w-5 h-5 bg-gradient-to-br from-[#dff2eb] to-[#b9e5e8] rounded-full flex items-center justify-center flex-shrink-0'>
-                          <CheckCircle2 className='w-2.5 h-2.5 text-[#4a628a]' />
+                        <div className='w-6 h-6 bg-green-500/20 rounded-full flex items-center justify-center flex-shrink-0 group-hover/item:bg-green-500/30 transition-colors duration-300 border border-green-400/30'>
+                          <CheckCircle2 className='w-3 h-3 text-green-400' />
                         </div>
-                        <span className='text-gray-700 text-sm font-medium truncate'>
+                        <span className='text-blue-100 font-medium group-hover/item:text-white transition-colors duration-300'>
                           {detail}
                         </span>
-                      </motion.div>
+                      </div>
                     ))}
                   </div>
 
-                  {/* CTA Button - Consistent Placement */}
+                  {/* Bottom Border Effect */}
+                  <div
+                    className={`absolute bottom-0 left-0 w-0 h-1 bg-gradient-to-r ${feature.color} group-hover:w-full transition-all duration-500 ease-out`}
+                  />
                 </CardContent>
               </Card>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
+
+        {/* Bottom CTA */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          className='text-center mt-16'
+        >
+          <div className='bg-gradient-to-r from-blue-500/10 to-cyan-500/10 rounded-2xl p-8 border border-blue-400/30 backdrop-blur-sm relative overflow-hidden'>
+            {/* Background pattern */}
+            <div className='absolute inset-0 opacity-5'>
+              <div className='absolute top-0 left-0 w-32 h-32 bg-blue-400 rounded-full blur-3xl'></div>
+              <div className='absolute bottom-0 right-0 w-32 h-32 bg-cyan-400 rounded-full blur-3xl'></div>
+            </div>
+
+            <div className='relative z-10'>
+              <h3 className='text-2xl font-bold text-white mb-4'>
+                Siap Memilih Laptop Terbaik?
+              </h3>
+              <p className='text-blue-100/80 mb-6 max-w-2xl mx-auto'>
+                Mulai analisis perbandingan laptop Anda dengan metode AHP yang
+                terpercaya.
+              </p>
+              <button className='bg-gradient-to-r from-blue-500 to-cyan-500 text-white px-8 py-3 rounded-xl font-semibold hover:shadow-lg hover:shadow-blue-500/30 transition-all duration-300 hover:scale-105'>
+                Mulai Sekarang
+              </button>
+            </div>
+          </div>
+        </motion.div>
       </div>
     </section>
   );

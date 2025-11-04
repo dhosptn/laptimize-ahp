@@ -73,7 +73,7 @@ export default function GlobalLoader() {
       {loading && (
         <motion.div
           key='loading'
-          className='fixed inset-0 flex items-center justify-center bg-gradient-to-br from-[#dff2eb] to-[#7ab2d3] z-50'
+          className='fixed inset-0 flex items-center justify-center bg-[#021526] z-50'
           variants={containerVariants}
           initial='hidden'
           animate='visible'

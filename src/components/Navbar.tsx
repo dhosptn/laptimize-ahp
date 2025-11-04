@@ -99,8 +99,8 @@ export default function Navbar() {
       <motion.div
         className={`rounded-2xl transition-all duration-300 ${
           isScrolled
-            ? 'bg-white/20 backdrop-blur-xl shadow-lg shadow-black/10 border border-white/30 md:w-[75%] w-[95%]'
-            : 'bg-white/15 backdrop-blur-lg shadow-md shadow-black/5 border border-white/20 md:w-[85%] w-[95%]'
+            ? 'bg-[#021526]/90 backdrop-blur-xl shadow-2xl shadow-blue-900/30 border border-blue-400/30 md:w-[75%] w-[95%]'
+            : 'bg-[#021526]/80 backdrop-blur-lg shadow-lg shadow-blue-900/20 border border-blue-400/20 md:w-[85%] w-[95%]'
         }`}
         initial={{ y: -100, opacity: 0 }}
         animate={{
@@ -123,13 +123,13 @@ export default function Navbar() {
             >
               <div className='relative'>
                 <div className='w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center shadow-lg'>
-                  <Laptop className='h-5 w-5 text-gray-900' />
+                  <Laptop className='h-5 w-5 text-white' />
                 </div>
                 <div className='absolute inset-0 rounded-xl bg-white/20 backdrop-blur-sm' />
               </div>
               <Link
                 href='/'
-                className='text-xl font-bold bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent'
+                className='text-xl font-bold bg-gradient-to-r from-blue-300 to-cyan-200 bg-clip-text text-transparent'
                 onClick={(e) => {
                   e.preventDefault();
                   window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -141,7 +141,7 @@ export default function Navbar() {
 
             {/* Desktop Navigation - Centered */}
             <div className='hidden md:flex absolute left-1/2 transform -translate-x-1/2'>
-              <div className='flex space-x-1 bg-white/10 backdrop-blur-sm rounded-xl p-1 border border-white/20'>
+              <div className='flex space-x-1 bg-[#0a2a4a]/80 backdrop-blur-sm rounded-xl p-1 border border-blue-400/30'>
                 {menuItems.map((item, index) => (
                   <motion.div
                     key={item.href}
@@ -153,11 +153,11 @@ export default function Navbar() {
                   >
                     <button
                       onClick={() => handleSmoothScroll(item.href)}
-                      className='relative px-4 py-2 rounded-lg text-sm font-medium text-gray-700 hover:text-gray-900 transition-all duration-300 group cursor-pointer'
+                      className='relative px-4 py-2 rounded-lg text-sm font-medium text-blue-100 hover:text-white transition-all duration-300 group cursor-pointer'
                     >
                       <span className='relative z-10'>{item.label}</span>
                       <motion.div
-                        className='absolute inset-0 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-lg'
+                        className='absolute inset-0 bg-gradient-to-r from-blue-500/40 to-cyan-400/40 rounded-lg'
                         whileHover={{
                           opacity: 1,
                           scale: 1.05,
@@ -180,11 +180,11 @@ export default function Navbar() {
             >
               <Button
                 onClick={handleGetStarted}
-                className='relative overflow-hidden bg-gradient-to-r from-gray-800 to-gray-700 hover:from-gray-700 hover:to-gray-600 text-white shadow-lg hover:shadow-xl transition-all duration-300 group rounded-xl cursor-pointer'
+                className='relative overflow-hidden bg-gradient-to-r from-blue-500 to-cyan-400 hover:from-blue-400 hover:to-cyan-300 text-[#021526] font-semibold shadow-lg hover:shadow-xl hover:shadow-blue-500/30 transition-all duration-300 group rounded-xl cursor-pointer'
               >
                 <span className='relative z-10'>Mulai Bandingkan</span>
                 <motion.div
-                  className='absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500'
+                  className='absolute inset-0 bg-gradient-to-r from-white/20 to-white/10'
                   initial={{ x: '100%' }}
                   whileHover={{ x: 0 }}
                   transition={{ duration: 0.3 }}
@@ -203,7 +203,7 @@ export default function Navbar() {
                 variant='ghost'
                 size='icon'
                 onClick={() => setIsOpen(!isOpen)}
-                className='rounded-xl bg-white/10 hover:bg-white/20 text-gray-700 border border-white/20'
+                className='rounded-xl bg-[#0a2a4a]/80 hover:bg-[#0a2a4a] text-blue-100 border border-blue-400/30'
               >
                 {isOpen ? (
                   <X className='h-5 w-5' />
@@ -223,7 +223,7 @@ export default function Navbar() {
               initial='closed'
               animate='open'
               exit='closed'
-              className='md:hidden absolute top-full left-0 right-0 mt-2 rounded-2xl bg-gradient-to-br from-[#dff2eb]/95 to-[#7ab2d3]/95 backdrop-blur-xl border border-white/30 shadow-xl'
+              className='md:hidden absolute top-full left-0 right-0 mt-2 rounded-2xl bg-[#0a2a4a]/95 backdrop-blur-xl border border-blue-400/30 shadow-2xl shadow-blue-900/30'
             >
               <div className='p-4 space-y-2'>
                 {menuItems.map((item, index) => (
@@ -235,7 +235,7 @@ export default function Navbar() {
                   >
                     <button
                       onClick={() => handleSmoothScroll(item.href)}
-                      className='w-full text-left px-4 py-3 rounded-xl text-gray-800 hover:bg-white/40 transition-all duration-200 font-medium hover:scale-105 transform cursor-pointer'
+                      className='w-full text-left px-4 py-3 rounded-xl text-blue-100 hover:bg-blue-500/30 transition-all duration-200 font-medium hover:scale-105 transform cursor-pointer border border-transparent hover:border-blue-400/30'
                     >
                       {item.label}
                     </button>
@@ -249,7 +249,7 @@ export default function Navbar() {
                 >
                   <Button
                     onClick={handleGetStarted}
-                    className='w-full bg-gray-800 hover:bg-gray-900 text-white rounded-xl py-3 cursor-pointer'
+                    className='w-full bg-gradient-to-r from-blue-500 to-cyan-400 hover:from-blue-400 hover:to-cyan-300 text-[#021526] font-semibold rounded-xl py-3 cursor-pointer shadow-lg hover:shadow-blue-500/30'
                   >
                     Mulai Bandingkan
                   </Button>
