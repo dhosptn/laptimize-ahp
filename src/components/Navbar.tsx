@@ -121,11 +121,12 @@ export default function Navbar() {
               transition={{ duration: 0.5, delay: 0.1 }}
               className='flex items-center space-x-2'
             >
+              {/* Version 6 - Dark Theme Optimized */}
               <div className='relative'>
-                <div className='w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center shadow-lg'>
+                <div className='w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-400 to-blue-500 flex items-center justify-center shadow-lg shadow-cyan-500/30 ring-2 ring-cyan-400/20'>
                   <Laptop className='h-5 w-5 text-white' />
                 </div>
-                <div className='absolute inset-0 rounded-xl bg-white/20 backdrop-blur-sm' />
+                <div className='absolute inset-0 rounded-xl bg-gradient-to-br from-cyan-400/40 to-blue-500/40 backdrop-blur-sm animate-pulse' />
               </div>
               <Link
                 href='/'

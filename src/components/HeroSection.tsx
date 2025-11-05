@@ -2,11 +2,14 @@
 
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
-import { Play, CheckCircle } from 'lucide-react';
+import { Play, CheckCircle, X } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import LightRays from '@/components/LightRays';
+import { motion } from 'framer-motion';
+import React, { useState } from 'react';
 
 export default function HeroSection() {
+  const [isOpen, setIsOpen] = useState(false);
   const router = useRouter();
 
   const handleFindMyLaptop = () => {
@@ -93,10 +96,80 @@ export default function HeroSection() {
                     size='lg'
                     variant='outline'
                     className='border-gray-300 text-gray-700 hover:bg-gray-50 rounded-lg transition-all duration-200 flex items-center gap-2 px-6 sm:px-8 py-5 sm:py-6 text-base font-medium cursor-pointer'
+                    onClick={() => setIsOpen(true)}
                   >
                     <Play className='h-4 w-4' />
                     Lihat Demo
                   </Button>
+
+                  {/* Modal Video */}
+                  {isOpen && (
+                    <motion.div
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      className='fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-lg'
+                      onClick={() => setIsOpen(false)}
+                    >
+                      <motion.div
+                        initial={{ scale: 0.8, opacity: 0 }}
+                        animate={{ scale: 1, opacity: 1 }}
+                        exit={{ scale: 0.8, opacity: 0 }}
+                        transition={{ type: 'spring', damping: 20 }}
+                        className='relative bg-[#0a2a4a] border border-cyan-400/30 rounded-2xl overflow-hidden w-11/12 md:w-3/4 lg:w-2/3 xl:w-1/2 shadow-2xl shadow-cyan-500/10'
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        {/* Header Modal */}
+                        <div className='flex items-center justify-between p-4 border-b border-cyan-400/20 bg-gradient-to-r from-cyan-500/10 to-blue-500/10'>
+                          <div className='flex items-center gap-3'>
+                            <div className='w-8 h-8 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-lg flex items-center justify-center'>
+                              <Play className='h-4 w-4 text-white' />
+                            </div>
+                            <h3 className='text-lg font-semibold text-white'>
+                              Demo AHP Process
+                            </h3>
+                          </div>
+
+                          {/* Tombol Tutup Premium */}
+                          <button
+                            onClick={() => setIsOpen(false)}
+                            className='w-8 h-8 rounded-full bg-gray-700/50 hover:bg-red-500/20 border border-gray-600/50 hover:border-red-400/50 flex items-center justify-center text-gray-300 hover:text-red-300 transition-all duration-300 group'
+                          >
+                            <X className='h-4 w-4 group-hover:scale-110' />
+                          </button>
+                        </div>
+
+                        {/* Video Container */}
+                        <div className='relative p-6 bg-[#021526]'>
+                          <div className='relative rounded-xl overflow-hidden bg-black shadow-2xl'>
+                            {/* Video Player */}
+                            <video
+                              className='w-full rounded-lg'
+                              src='/demo.mp4'
+                              controls
+                              autoPlay
+                              poster='/demo-poster.jpg' // Optional: add poster image
+                            >
+                              Your browser does not support the video tag.
+                            </video>
+
+                            {/* Loading State */}
+                            <div className='absolute inset-0 flex items-center justify-center bg-black/50 hidden'>
+                              <div className='animate-spin rounded-full h-12 w-12 border-b-2 border-cyan-400'></div>
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Footer Modal */}
+                        <div className='p-4 border-t border-cyan-400/20 bg-gradient-to-r from-cyan-500/5 to-blue-500/5'>
+                          <p className='text-sm text-cyan-200/80 text-center'>
+                            Demonstrasi proses perbandingan kriteria menggunakan
+                            metode AHP
+                          </p>
+                        </div>
+                      </motion.div>
+                    </motion.div>
+                  )}
                 </div>
               </div>
 
